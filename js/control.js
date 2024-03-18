@@ -117,6 +117,10 @@ function makeGraphic() {
 
     const canvas = document.createElement('canvas');
     canvas.id = 'myChart';
+
+    canvas.width = graphicsDiv.clientWidth;
+    canvas.height = graphicsDiv.clientHeight;
+
     graphicsDiv.innerHTML = '';
     graphicsDiv.appendChild(canvas);
 
@@ -177,6 +181,12 @@ function makeGraphic() {
     }
 
     myChart.data.labels = roundLabels;
+
+    window.addEventListener('resize', () => {
+        canvas.width = graphicsDiv.clientWidth;
+        canvas.height = graphicsDiv.clientHeight;
+        myChart.update();
+    });
 
     myChart.update();
 }
